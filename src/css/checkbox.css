@@ -5,8 +5,8 @@
   align-items: center;
   gap: 0.5em;
   cursor: pointer;
-  margin-top: 1em;
-  margin-bottom: 4px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .checkbox-container input {
@@ -18,8 +18,8 @@
 }
 
 .checkmark {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
 }
 
@@ -38,8 +38,8 @@
 .checkmark:after {
   content: "";
   position: relative;
-  left: 8px;
-  top: 5px;
+  left: 6px;
+  top: 2px;
   display: none;
 }
 

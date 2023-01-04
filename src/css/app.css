@@ -73,6 +73,7 @@ body {
 
 .sub-option {
   padding-left: 2.5em;
+  padding-bottom: 0.1em;
 }
 
 @media only screen and (min-width: 1500px) {
