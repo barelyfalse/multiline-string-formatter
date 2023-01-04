@@ -39,7 +39,7 @@ function App() {
       let l = line
 
       // Trimming line start
-      if (options.trimStrStartByLn && options.trimStrEnd) {
+      if (options.trimStrStartByLn && options.trimStrStart) {
         l = l.trimStart() 
       }
 

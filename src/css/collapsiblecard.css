@@ -1,0 +1,47 @@
+.collapsible-card {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
+  -webkit-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
+  -moz-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
+  transition: height 500ms;
+  overflow: hidden;
+}
+
+.collapsible-card .titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.collapsible-card .titlebar .title-holder {
+  flex: 1;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.collapsible-card .titlebar .actions .collapse-btn {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: rgb(100, 100, 100);
+}
+
+.collapsible-card .titlebar .actions .collapse-btn .collapse-icon{
+  transition: all 200ms;
+  transform: rotate(-90deg);
+}
+
+.collapsible-card .titlebar .actions .collapse-btn .collapsed-icon{
+  transition: all 200ms;
+  transform: rotate(90deg);
+}
+
