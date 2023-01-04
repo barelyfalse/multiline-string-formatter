@@ -13,13 +13,24 @@ function Options({options, setOptions}) {
   return (
     <CollapsibleCard title="Options">
       <Checkbox 
-        label="Eliminar saltos extra de línea"
+        label="Eliminar saltos de línea extra"
+        checked={options.deleteExtraLineBreaks}
+        setChecked={(val) => setOptState('deleteExtraLineBreaks', val)}
       />
-      <div className="sub-option">
-        <Checkbox label="Sin saltos de línea"/>
-      </div>
+      {
+        options.deleteExtraLineBreaks?
+        <div className="sub-option">
+          <Checkbox 
+            label="Sin saltos de línea"
+            checked={options.deleteEveryLineBreak}
+            setChecked={(val) => setOptState('deleteEveryLineBreak', val)}
+          />
+        </div>:null
+      }
       <Checkbox 
         label="Escapar caracteres especiales"
+        checked={options.escapeSpecialChars}
+        setChecked={(val) => setOptState('escapeSpecialChars', val)}
       />
       <Checkbox 
         label="Recortar inicio de la cadena"
@@ -34,8 +45,7 @@ function Options({options, setOptions}) {
             checked={options.trimStrStartByLn}
             setChecked={(val) => setOptState('trimStrStartByLn', val)}
           />
-        </div>:
-        null
+        </div>:null
       }
       <Checkbox 
         label="Recortar final de la cadena"
@@ -50,8 +60,7 @@ function Options({options, setOptions}) {
             checked={options.trimStrEndByLn}
             setChecked={(val) => setOptState('trimStrEndByLn', val)}
           />
-        </div>:
-        null
+        </div>:null
       }
       
     </CollapsibleCard>

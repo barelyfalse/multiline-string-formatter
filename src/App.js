@@ -15,30 +15,81 @@ function App() {
   const [infoText, setInfoText] = useState("Waiting...")
 
   const [options, setOption] = useState({
+    deleteExtraLineBreaks: false,
+    deleteEveryLineBreak: false,
+    escapeSpecialChars: false,
     trimStrStart: false,
     trimStrStartByLn: false,
     trimStrEnd: false,
     trimStrEndByLn: false,
   })
 
+  const [preSuFixOpts, setPreSuFixOpts] = useState({
+    prefix: '',
+    sufix: '',
+    byLn: false
+  })
+
   function processText(text) {
     let procText = ''
+    let lines = text.split('\n')
 
-    let currentLn = ''
+    // BY LINE PROCESSING
+    lines = lines.map(line => {
+      let l = line
 
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i]
-      if (char === '\n') {
-        console.log(currentLn)
-        if (options.trimStrEndByLn) {
-          currentLn = currentLn.trimEnd()
-        }
-        console.log(currentLn)
-        procText += '\n'+currentLn
-        currentLn = ''
-      } else {
-        currentLn += char
+      // Trimming line start
+      if (options.trimStrStartByLn && options.trimStrEnd) {
+        l = l.trimStart() 
       }
+
+      // Trimming line end
+      if (options.trimStrEndByLn && options.trimStrEnd) {
+        l = l.trimEnd() 
+      }
+
+      //if string empty don't return anything (after trimming)
+      if (l.length < 1) {
+        return
+      }
+
+      // BY CHAR PROCESSING
+      // special char escaping
+      if (options.escapeSpecialChars) {
+        l = [...l].map(char => {
+          if (/[\"\'\\]/.test(char)) {
+            return '\\' + char
+          }
+          return char
+        }).join('')
+      }
+      
+      if (preSuFixOpts.byLn) {
+        l = preSuFixOpts.prefix+l+preSuFixOpts.sufix
+      }
+
+      return l
+    })
+
+    let joinChar = options.deleteExtraLineBreaks && options.deleteEveryLineBreak ? '':'\n'
+
+    procText = lines.join(joinChar)
+
+    // WHOLE STRING PROCESSING
+
+    // Trimming string start
+    if (options.trimStrStart && !options.trimStrStartByLn) {
+      procText = procText.trimStart()
+    }
+
+    // Trimming string end
+    if (options.trimStrEnd && !options.trimStrEndByLn) {
+      procText = procText.trimEnd()
+    }
+
+    // Adding string presufixes
+    if (!preSuFixOpts.byLn) {
+      procText = preSuFixOpts.prefix+procText+preSuFixOpts.sufix
     }
 
     setOutputText(procText)
@@ -59,7 +110,7 @@ function App() {
       setInfoText('Processing...')
     }
     //options also on useEffect for be called again on options change
-  }, [rawText, options])
+  }, [rawText, options, preSuFixOpts])
 
   return (
     <div className="wrapper">
@@ -74,7 +125,10 @@ function App() {
             options={options}
             setOptions={setOption}
           />
-          <PreSuFix />
+          <PreSuFix 
+            preSuFixOpts={preSuFixOpts}
+            setPreSuFixOpts={setPreSuFixOpts}
+          />
           <Replace />
         </div>
         <div className="pane">
