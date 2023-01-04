@@ -14,7 +14,7 @@ function PreSuFix() {
         <p>Sufix</p>
         <textarea rows="1" className='text-input'/>
       </div>
-      <Checkbox label="Por línea" />
+      <Checkbox label="Por línea" defaultChecked={true}/>
     </CollapsibleCard>
   )
 }

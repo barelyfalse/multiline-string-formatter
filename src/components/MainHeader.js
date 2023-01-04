@@ -2,7 +2,9 @@ import React from 'react'
 
 function Header() {
   return (
-    <div>Header</div>
+    <div className="page-header">
+      <h1>Text Formatter</h1>
+    </div>
   )
 }
 

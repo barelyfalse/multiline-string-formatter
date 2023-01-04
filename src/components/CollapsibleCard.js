@@ -3,7 +3,7 @@ import '../css/app.css'
 
 function CollapsibleCard(props) {
   return (
-    <div>
+    <div className="collapsible-card">
       <h3>{props.title}</h3>
       {props.children}
     </div>

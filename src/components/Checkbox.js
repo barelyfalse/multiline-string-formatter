@@ -1,23 +1,16 @@
 import React from 'react'
+import '../css/checkbox.css'
 
-function Checkbox({label, subComponent}) {
-  const [checked, setChecked] = React.useState(false)
+function Checkbox({label, checked, setChecked}) {
 
   return (
-    <div>
+    <label className="checkbox-container">{label}
       <input type="checkbox"
-        defaultChecked={checked}
+        checked={checked}
         onChange={() => setChecked(!checked)}
       />
-      {label}
-      {
-        subComponent?
-        <div>
-          {subComponent}
-        </div>:
-        null
-      }
-    </div>
+      <span className="checkmark"></span>
+    </label>
   )
 }
 
