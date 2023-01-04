@@ -10,13 +10,13 @@ function App() {
     <div className="wrapper">
       <h1>Multiline Formatter</h1>
       <div className="container">
-        <div className="main-inputs">
+        <div className="pane">
           <MainInput />
           <Options />
           <PreSuFix />
           <Replace />
         </div>
-        <div className="main-outputs">
+        <div className="pane">
           <MainOutput />
         </div>
       </div>
