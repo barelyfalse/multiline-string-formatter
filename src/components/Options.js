@@ -2,7 +2,7 @@ import React from 'react'
 import Checkbox from './Checkbox'
 import CollapsibleCard from './CollapsibleCard'
 
-function Options({options, setOptions}) {
+function Options({options, setOptions, disabled, setDisabledOpts}) {
   
   function setOptState(prop, value) {
     setOptions(prevOpts => {
@@ -11,11 +11,12 @@ function Options({options, setOptions}) {
   }
 
   return (
-    <CollapsibleCard title="Options">
+    <CollapsibleCard title="Options" disabled={disabled} setDisabled={setDisabledOpts}> 
       <Checkbox 
         label="Eliminar saltos de línea extra"
         checked={options.deleteExtraLineBreaks}
         setChecked={(val) => setOptState('deleteExtraLineBreaks', val)}
+        disabled={disabled}
       />
       {
         options.deleteExtraLineBreaks?
@@ -24,6 +25,7 @@ function Options({options, setOptions}) {
             label="Sin saltos de línea"
             checked={options.deleteEveryLineBreak}
             setChecked={(val) => setOptState('deleteEveryLineBreak', val)}
+            disabled={disabled}
           />
         </div>:null
       }
@@ -31,11 +33,13 @@ function Options({options, setOptions}) {
         label="Escapar caracteres especiales"
         checked={options.escapeSpecialChars}
         setChecked={(val) => setOptState('escapeSpecialChars', val)}
+        disabled={disabled}
       />
       <Checkbox 
         label="Recortar inicio de la cadena"
         checked={options.trimStrStart}
         setChecked={(val) => setOptState('trimStrStart', val)}
+        disabled={disabled}
       />
       {
         options.trimStrStart?
@@ -44,6 +48,7 @@ function Options({options, setOptions}) {
             label="Por línea"
             checked={options.trimStrStartByLn}
             setChecked={(val) => setOptState('trimStrStartByLn', val)}
+            disabled={disabled}
           />
         </div>:null
       }
@@ -51,6 +56,7 @@ function Options({options, setOptions}) {
         label="Recortar final de la cadena"
         checked={options.trimStrEnd}
         setChecked={(val) => setOptState('trimStrEnd', val)}
+        disabled={disabled}
       />
       {
         options.trimStrEnd?
@@ -59,6 +65,7 @@ function Options({options, setOptions}) {
             label="Por línea"
             checked={options.trimStrEndByLn}
             setChecked={(val) => setOptState('trimStrEndByLn', val)}
+            disabled={disabled}
           />
         </div>:null
       }

@@ -14,6 +14,8 @@ function App() {
   const [outputText, setOutputText] = useState("")
   const [infoText, setInfoText] = useState("Waiting...")
 
+  const [disabledOpts, setDisabledOpts] = useState(false)
+
   const [options, setOption] = useState({
     deleteExtraLineBreaks: false,
     deleteEveryLineBreak: false,
@@ -55,7 +57,7 @@ function App() {
 
       // BY CHAR PROCESSING
       // special char escaping
-      if (options.escapeSpecialChars) {
+      if (!disabledOpts && options.escapeSpecialChars) {
         l = [...l].map(char => {
           if (/[\"\'\\]/.test(char)) {
             return '\\' + char
@@ -110,7 +112,7 @@ function App() {
       setInfoText('Processing...')
     }
     //options also on useEffect for be called again on options change
-  }, [rawText, options, preSuFixOpts])
+  }, [rawText, options, preSuFixOpts, disabledOpts])
 
   return (
     <div className="wrapper">
@@ -124,6 +126,8 @@ function App() {
           <Options 
             options={options}
             setOptions={setOption}
+            disabled={disabledOpts}
+            setDisabledOpts={setDisabledOpts}
           />
           <PreSuFix 
             preSuFixOpts={preSuFixOpts}

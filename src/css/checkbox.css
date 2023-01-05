@@ -35,6 +35,15 @@
   background-color: rgb(42, 230, 230);
 }
 
+.checkbox-container input:checked:hover:enabled ~ .checkmark {
+  background-color: rgb(39, 214, 214);
+}
+
+.checkbox-container input:disabled ~ .checkmark {
+  background-color: rgb(180, 180, 180);
+  cursor: not-allowed;
+}
+
 .checkmark:after {
   content: "";
   position: relative;
@@ -55,4 +64,8 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.checkbox-container input:focus ~ .checkmark{
+  outline: rgb(0, 110, 255) 2px solid;
 }

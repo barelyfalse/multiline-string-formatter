@@ -6,7 +6,7 @@
   box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
   -webkit-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
   -moz-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
-  transition: height 500ms;
+  height: auto;
   overflow: hidden;
 }
 
@@ -21,8 +21,10 @@
 .collapsible-card .titlebar .title-holder {
   flex: 1;
   cursor: pointer;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
 }
 
 .collapsible-card .titlebar .actions .collapse-btn {
