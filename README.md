@@ -1,7 +1,7 @@
 # Multiline Text Formatter
 
 Un pequeño programa web para formatear texto.
-Visitar deployment en: [[https://barelyfalse.github.io/multiline-string-formatter/]]
+Visitar deployment en: [https://barelyfalse.github.io/multiline-string-formatter/]
 
 ## Funciones
 - Texto input: pega tu texto
