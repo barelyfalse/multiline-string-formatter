@@ -198,8 +198,7 @@ function App() {
           />
         </div>
         <div className="pane">
-          <MainOutput value={outputText}/>
-          <ProcessingInfo value={infoText}/>
+          <MainOutput value={outputText} info={infoText}/>
         </div>
       </div>
       <Footer />

@@ -1,12 +1,15 @@
 import React from 'react'
 import '../css/app.css'
+import Card from './Card'
+import ProcessingInfo from './ProcessingInfo'
 
-function MainOutput({value}) {
+function MainOutput({value, info}) {
   return (
-    <div>
+    <Card>
       <h2>Formatted Output</h2>
       <textarea rows="24" className='text-input' value={value} readOnly/>
-    </div>
+      <ProcessingInfo value={info}/>
+    </Card>
   )
 }
 
