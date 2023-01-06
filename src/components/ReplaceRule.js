@@ -14,13 +14,13 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
       <div className="row">
         <input 
           type="text" 
-          placeholder={rule.regexMode?'Regex':'Encontrar'}
+          placeholder={rule.regexMode?'RegExp':'Encontrar'}
           value={rule.find}
           onChange={e => {
             setRule(index, 'find', e.target.value)
           }}
         ></input>
-        <Checkbox label='Regex' checked={rule.regexMode} setChecked={(val) => setRule(index, 'regexMode', val)}/>
+        <Checkbox label='RegExp' checked={rule.regexMode} setChecked={(val) => setRule(index, 'regexMode', val)}/>
       </div>
       <div className="row">
         <input 
