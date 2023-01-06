@@ -35,9 +35,10 @@ body {
   border-radius: 4px;
   border: 1px solid rgb(228, 228, 228);
   font-size: 1em;
-  box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
+  min-height: 2em;
   -webkit-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
   -moz-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
+  box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
 }
 
 .page-header {
@@ -75,10 +76,11 @@ body {
 @media only screen and (min-width: 992px) {
   .container {
     flex-direction: row;
+    margin-top: 80px;
   }
 
-  .page-footer {
-    position: absolute;
-    bottom: 0;
+  .page-header {
+    position: fixed;
+    top: 0;
   }
 }

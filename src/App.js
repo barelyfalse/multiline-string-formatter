@@ -14,7 +14,7 @@ function App() {
   const [outputText, setOutputText] = useState("")
   const [infoText, setInfoText] = useState("Waiting...")
 
-  const [disabledOpts, setDisabledOpts] = useState(false)
+  const [disabledOpts, setDisabledOpts] = useState(true)
 
   const [options, setOption] = useState({
     deleteExtraLineBreaks: false,
@@ -26,11 +26,43 @@ function App() {
     trimStrEndByLn: false,
   })
 
+  const [disabledPreSuFix, setDisabledPreSuFix] = useState(true)
+
   const [preSuFixOpts, setPreSuFixOpts] = useState({
     prefix: '',
     sufix: '',
     byLn: false
   })
+
+  const [disabledReplace, setDisabledReplace] = useState(true)
+
+  const [replaceRules, setReplaceRules] = useState(() => [
+    {find:'', regexMode:false, replace:'', mode:'1', info:''}
+  ])
+
+  function setRule(index, param, value) {
+    setReplaceRules(prevRules => {
+      const newRules = [...prevRules]
+      newRules[index][param] = value
+      return newRules
+    })
+  }
+
+  function removeRule(index) {
+    setReplaceRules(prevRules => {
+      let newRules = [...prevRules]
+      newRules.splice(index, 1)
+      return newRules
+    })
+  }
+
+  function addRule() {
+    setReplaceRules(prevRules => {
+      let newRules = [...prevRules]
+      newRules.push({find:'', regexMode:false, replace:'',mode:'1', info:''})
+      return newRules
+    })
+  }
 
   function processText(text) {
     let procText = ''
@@ -41,12 +73,12 @@ function App() {
       let l = line
 
       // Trimming line start
-      if (options.trimStrStartByLn && options.trimStrStart) {
+      if (disabledOpts && options.trimStrStartByLn && options.trimStrStart) {
         l = l.trimStart() 
       }
 
       // Trimming line end
-      if (options.trimStrEndByLn && options.trimStrEnd) {
+      if (disabledOpts && options.trimStrEndByLn && options.trimStrEnd) {
         l = l.trimEnd() 
       }
 
@@ -57,16 +89,17 @@ function App() {
 
       // BY CHAR PROCESSING
       // special char escaping
-      if (!disabledOpts && options.escapeSpecialChars) {
+      if (disabledOpts && options.escapeSpecialChars) {
         l = [...l].map(char => {
-          if (/[\"\'\\]/.test(char)) {
+          if (/["'\\]/.test(char)) {
             return '\\' + char
           }
           return char
         }).join('')
       }
       
-      if (preSuFixOpts.byLn) {
+      // Prefix and sufix by line
+      if (disabledPreSuFix && preSuFixOpts.byLn) {
         l = preSuFixOpts.prefix+l+preSuFixOpts.sufix
       }
 
@@ -80,13 +113,33 @@ function App() {
     // WHOLE STRING PROCESSING
 
     // Trimming string start
-    if (options.trimStrStart && !options.trimStrStartByLn) {
+    if (disabledOpts && options.trimStrStart && !options.trimStrStartByLn) {
       procText = procText.trimStart()
     }
 
     // Trimming string end
-    if (options.trimStrEnd && !options.trimStrEndByLn) {
+    if (disabledOpts && options.trimStrEnd && !options.trimStrEndByLn) {
       procText = procText.trimEnd()
+    }
+
+    // Replace
+    if (disabledReplace) {
+      replaceRules.forEach((rule, index) => {
+        if (rule.find.length < 1 && procText < 2)
+          return
+
+        const replaceStr = rule.mode === '1'?rule.replace:'w'
+        if (rule.regexMode) {
+          let regx =''
+          try {
+            regx = RegExp(rule.find, 'g')
+            procText = procText.replaceAll(regx, replaceStr)
+          } catch (error) {
+          }
+        } else {
+          procText = procText.replaceAll(rule.find, replaceStr)
+        }
+      })
     }
 
     // Adding string presufixes
@@ -112,7 +165,7 @@ function App() {
       setInfoText('Processing...')
     }
     //options also on useEffect for be called again on options change
-  }, [rawText, options, preSuFixOpts, disabledOpts])
+  }, [rawText, options, preSuFixOpts, disabledOpts, disabledPreSuFix, replaceRules, disabledReplace])
 
   return (
     <div className="wrapper">
@@ -132,8 +185,17 @@ function App() {
           <PreSuFix 
             preSuFixOpts={preSuFixOpts}
             setPreSuFixOpts={setPreSuFixOpts}
+            disabled={disabledPreSuFix}
+            setDisabledPreSuFix={setDisabledPreSuFix}
           />
-          <Replace />
+          <Replace
+            rules={replaceRules}
+            setRule={setRule}
+            removeRule={removeRule}
+            disabled={disabledReplace}
+            setDisabledReplace={setDisabledReplace}
+            addRule={addRule}
+          />
         </div>
         <div className="pane">
           <MainOutput value={outputText}/>

@@ -9,7 +9,7 @@ function CollapsibleCard(props) {
     <div className="collapsible-card"
       style={{
         transition: 'max-height 250ms ease-in-out',
-        maxHeight: collapsed ? '58px' : '400px',
+        maxHeight: collapsed ? '58px' : '2000px',
       }}
     >
       <div className="titlebar">
