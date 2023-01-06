@@ -8,7 +8,6 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
     <div className="rule-container">
       <div className="row row-right">
         <button onClick={() => {
-          console.log(index)
           removeRule(index)
           }}>🗑</button>
       </div>
