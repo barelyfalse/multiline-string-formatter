@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "caa737469114643e5513",
-    "url": "/multiline-string-formatter/static/css/main.c3e76faa.chunk.css"
+    "revision": "5e3f8c770eca4ba81f63",
+    "url": "/multiline-string-formatter/static/css/main.3133fd91.chunk.css"
   },
   {
-    "revision": "caa737469114643e5513",
-    "url": "/multiline-string-formatter/static/js/main.caa73746.chunk.js"
+    "revision": "5e3f8c770eca4ba81f63",
+    "url": "/multiline-string-formatter/static/js/main.5e3f8c77.chunk.js"
   },
   {
     "revision": "fbc947ed123b9648ffb0",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/multiline-string-formatter/static/js/runtime~main.fa872d1d.js"
   },
   {
-    "revision": "37f6fada47ec6de7d8d7c3948c844588",
+    "revision": "6c957ddc03e84275ae32af08f71fd858",
     "url": "/multiline-string-formatter/index.html"
   }
 ];

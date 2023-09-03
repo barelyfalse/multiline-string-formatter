@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/multiline-string-formatter/precache-manifest.7ba3bb080ecd3b93457816f9c8e65090.js"
+  "/multiline-string-formatter/precache-manifest.158489220454db8c91fa6e1afe861e89.js"
 );
 
 workbox.clientsClaim();
