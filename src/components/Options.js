@@ -1,6 +1,7 @@
 import React from 'react'
 import Checkbox from './Checkbox'
 import CollapsibleCard from './CollapsibleCard'
+import NumberInput from './NumberInput'
 
 function Options({options, setOptions, disabled, setDisabledOpts}) {
   
@@ -21,13 +22,13 @@ function Options({options, setOptions, disabled, setDisabledOpts}) {
       {
         options.deleteExtraLineBreaks?
         <div className="sub-option">
-          <Checkbox 
-            label="Sin saltos de línea"
-            checked={options.deleteEveryLineBreak}
-            setChecked={(val) => setOptState('deleteEveryLineBreak', val)}
+          <NumberInput
+            label="Número máximo de saltos"
+            value={options.permitedLineBreaks}
+            setValue={(val) => setOptState('permitedLineBreaks', val)}
             disabled={!disabled}
           />
-        </div>:null
+        </div>:<></>
       }
       <Checkbox 
         label="Escapar caracteres especiales"
@@ -50,7 +51,7 @@ function Options({options, setOptions, disabled, setDisabledOpts}) {
             setChecked={(val) => setOptState('trimStrStartByLn', val)}
             disabled={!disabled}
           />
-        </div>:null
+        </div>:<></>
       }
       <Checkbox 
         label="Recortar final de la cadena"
@@ -67,7 +68,7 @@ function Options({options, setOptions, disabled, setDisabledOpts}) {
             setChecked={(val) => setOptState('trimStrEndByLn', val)}
             disabled={!disabled}
           />
-        </div>:null
+        </div>:<></>
       }
       
     </CollapsibleCard>

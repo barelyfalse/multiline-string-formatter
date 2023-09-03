@@ -12,14 +12,16 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
           }}>🗑</button>
       </div>
       <div className="row">
+        {rule.regexMode?<div className='reg-pre'>/</div>:<></>}
         <input 
           type="text" 
-          placeholder={rule.regexMode?'RegExp':'Encontrar'}
+          placeholder={rule.regexMode?'Regular Expression':'Encontrar'}
           value={rule.find}
           onChange={e => {
             setRule(index, 'find', e.target.value)
           }}
         ></input>
+        {rule.regexMode?<div className='reg-su'>/g</div>:<></>}
         <Checkbox label='RegExp' checked={rule.regexMode} setChecked={(val) => setRule(index, 'regexMode', val)}/>
       </div>
       <div className="row">
@@ -30,6 +32,7 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
             setRule(index, 'replace', e.target.value)
           }}
         ></input>
+        <Checkbox label='Parse' checked={rule.parse} setChecked={(val) => setRule(index, 'parse', val)}/>
         <select 
           value={rule.mode}
           onChange={e => {

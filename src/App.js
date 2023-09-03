@@ -7,7 +7,7 @@ import Replace from './components/Replace';
 import MainHeader from './components/MainHeader';
 import Footer from './components/Footer';
 import './css/app.css';
-import ProcessingInfo from './components/ProcessingInfo';
+//import ProcessingInfo from './components/ProcessingInfo';
 
 function App() {
   const [rawText, setRawText] = useState("")
@@ -18,7 +18,7 @@ function App() {
 
   const [options, setOption] = useState({
     deleteExtraLineBreaks: false,
-    deleteEveryLineBreak: false,
+    permitedLineBreaks: 2,
     escapeSpecialChars: false,
     trimStrStart: false,
     trimStrStartByLn: false,
@@ -37,7 +37,7 @@ function App() {
   const [disabledReplace, setDisabledReplace] = useState(true)
 
   const [replaceRules, setReplaceRules] = useState(() => [
-    {find:'', regexMode:false, replace:'', mode:'1', info:''}
+    {find:'', regexMode:false, parse:false, replace:'', mode:'1', info:''}
   ])
 
   function setRule(index, param, value) {
@@ -59,14 +59,14 @@ function App() {
   function addRule() {
     setReplaceRules(prevRules => {
       let newRules = [...prevRules]
-      newRules.push({find:'', regexMode:false, replace:'',mode:'1', info:''})
+      newRules.push({find:'', regexMode:false, parse:false, replace:'',mode:'1', info:''})
       return newRules
     })
   }
 
   function processText(text) {
-    let procText = ''
-    let lines = text.split('\n')
+    let procText = text
+    let lines = procText.split('\n')
 
     // BY LINE PROCESSING
     lines = lines.map(line => {
@@ -84,7 +84,7 @@ function App() {
 
       //if string empty don't return anything (after trimming)
       if (l.length < 1) {
-        return
+        return null
       }
 
       // BY CHAR PROCESSING
@@ -97,7 +97,7 @@ function App() {
           return char
         }).join('')
       }
-      
+
       // Prefix and sufix by line
       if (disabledPreSuFix && preSuFixOpts.byLn) {
         l = preSuFixOpts.prefix+l+preSuFixOpts.sufix
@@ -106,9 +106,7 @@ function App() {
       return l
     })
 
-    let joinChar = options.deleteExtraLineBreaks && options.deleteEveryLineBreak ? '':'\n'
-
-    procText = lines.join(joinChar)
+    procText = lines.join('\n')
 
     // WHOLE STRING PROCESSING
 
@@ -122,22 +120,46 @@ function App() {
       procText = procText.trimEnd()
     }
 
-    // Replace
+    let consecutiveBreaksCount = 0
+    if(disabledOpts && options.deleteExtraLineBreaks) {
+      procText = [...procText].map(char => {
+        if (char === '\n') {
+          consecutiveBreaksCount++
+          if (consecutiveBreaksCount > options.permitedLineBreaks) {
+            return ''
+          }
+        } else {
+          consecutiveBreaksCount = 0
+        }
+        return char
+      }).join('')
+    }
+
+    // REPLACE
     if (disabledReplace) {
       replaceRules.forEach((rule, index) => {
         if (rule.find.length < 1 && procText < 2)
           return
-
-        const replaceStr = rule.mode === '1'?rule.replace:'w'
+        let finalRule
+        let replaceStr = rule.replace
         if (rule.regexMode) {
-          let regx =''
           try {
-            regx = RegExp(rule.find, 'g')
-            procText = procText.replaceAll(regx, replaceStr)
+            finalRule = RegExp(rule.find, 'g')
           } catch (error) {
+            console.error('Regular expression parsing error!')
           }
         } else {
-          procText = procText.replaceAll(rule.find, replaceStr)
+          finalRule = rule.find
+        }
+
+        if(rule.parse) {
+          try {
+            procText = procText.replaceAll(finalRule, JSON.parse(`"${replaceStr}"`))
+          } catch (error) {
+            console.error('Replace string parsing error!')
+          }
+        } else {
+          procText = procText.replaceAll(finalRule, replaceStr)
         }
       })
     }

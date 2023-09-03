@@ -1,22 +1,42 @@
 # Multiline Text Formatter
 
-Un pequeño programa web para formatear texto.
-Visitar deployment en: [https://barelyfalse.github.io/multiline-string-formatter/]
+A small web application for formatting text.
+Visit the deployment at: [https://barelyfalse.github.io/multiline-string-formatter/]
 
-## Funciones
-- Texto input: pega tu texto
+## Functions applied to input text
+- Options:
+  - Remove a specific number of line breaks
+  - Escape special characters ("'\\)
+  - Trim the beginning of the string (multiline and single line)
+  - Trim the end of the string (multiline and single line)
+- Prefix and suffix (multiline and single line)
+- Search and replace rules
+  - Multiple rules
+  - Regular Expression rule
+  - Parsed substitution
+
+## Planned Features
+- Add information about the formatted text
+- Add information about the performed search/replace
+- Character escape modes
+- Custom flags for Regular Expressions
+
+---
+
+## Funciones aplicadas al texto input
 - Opciones:
-  - Eliminar saltos de línea (no funcional actualmente)
-  - Escapar caracteres especiales
+  - Eliminar específico número de saltos de línea
+  - Escapar caracteres especiales ("'\\)
   - Recortar inicio de la cadena (multilínea y no multilínea)
   - Recortar final de la cadena (multilínea y no multilínea)
 - Prefijo y sufijo (multilínea y no multilínea)
 - Reglas de busqueda y sustitución
   - Múltiples reglas
-  - Regla por RegExp
+  - Regla por Expresión Regular
+  - Sustitución parseada
 
-## Funciones planeadas a futuro
-- Reparar la función de eliminar saltos de línea
-- Agregar la opción de eliminar espacios extra, lineas vacías
+## Funciones futuras
 - Agregar información sobre el texto formateado
 - Agregar información sobre el search/replace realizado
+- Modos de escape de caractéres
+- Banderas personalizadas para las Expresiones Regulares
