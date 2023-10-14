@@ -5,11 +5,21 @@ button {
   border-radius: 2px;
   padding: 4px 8px;
   cursor: pointer;
+  transition: background-color 250ms ease;
+}
+
+button:hover {
+  background-color: var(--bg-accent);
+}
+
+button:active {
+  background-color: var(--fg-dead);
 }
 
 .tooltip-text {
   position: absolute;
   pointer-events: none;
+  text-wrap: nowrap;
   top: 1.5rem;
   left: 10px;
   background-color: var(--bg-main);
