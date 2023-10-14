@@ -1,0 +1,20 @@
+button {
+  background-color: var(--bg-accent1);
+  border: 1px solid var(--fg-dead);
+  color: var(--fg-main);
+  border-radius: 2px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  position: absolute;
+  pointer-events: none;
+  top: 1.5rem;
+  left: 10px;
+  background-color: var(--bg-main);
+  color: var(--fg-muted);
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0.8;
+}
