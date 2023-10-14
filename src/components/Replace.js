@@ -1,6 +1,7 @@
 import React from 'react'
 import CollapsibleCard from './CollapsibleCard'
 import ReplaceRule from './ReplaceRule'
+import Button from './Button'
 
 function Replace({rules, setRule, removeRule, disabled, setDisabledReplace, addRule}) {
   return (
@@ -19,12 +20,7 @@ function Replace({rules, setRule, removeRule, disabled, setDisabledReplace, addR
             )
           })
         }
-        <button
-          className='add-rule-btn'
-          onClick={() => addRule()}
-        >
-          &#128929;
-        </button>
+        <Button label="&#128929;" onClick={() => addRule()} tooltip="Add a new rule"/>
       </div>
     </CollapsibleCard>
   )

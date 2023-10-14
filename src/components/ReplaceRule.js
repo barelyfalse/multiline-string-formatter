@@ -1,15 +1,13 @@
 import React from 'react'
 import '../css/replacerule.css'
 import Checkbox from './Checkbox'
-import '../css/replacerule.css'
+import Button from './Button'
 
 function ReplaceRule({index, rule, setRule, removeRule}) {
   return (
     <div className="rule-container">
       <div className="row row-right">
-        <button onClick={() => {
-          removeRule(index)
-          }}>&#128936;</button>
+        <Button label="x" onClick={ () => removeRule(index) } tooltip="Delete"/>
       </div>
       <div className="row">
         {rule.regexMode?<div className='reg-pre'>/</div>:<></>}
