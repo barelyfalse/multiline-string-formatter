@@ -224,7 +224,11 @@ function App() {
           />
         </div>
         <div className="pane">
-          <MainOutput value={outputText} info={infoText}/>
+          <MainOutput 
+            value={outputText} 
+            info={infoText}
+            setRawInput={setRawText}
+            />
         </div>
       </div>
       <Footer />
