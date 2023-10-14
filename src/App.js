@@ -66,6 +66,10 @@ function App() {
 
   function processText(text) {
     let procText = text
+    
+    if (procText == null)
+      return;
+
     let lines = procText.split('\n')
 
     // BY LINE PROCESSING
