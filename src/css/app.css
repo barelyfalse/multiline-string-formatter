@@ -1,3 +1,14 @@
+:root {
+  --bg-main: #1d1d1d;
+  --bg-accent: #2b2b2b;
+  --bg-accent1: #3d3d3d;
+  --fg-main: #d8d8d8;
+  --fg-muted: #acacac;
+  --fg-dead: #7e7e7e;
+  --primary: rgb(13, 114, 114);
+  --primary-muted: rgb(27, 70, 70);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +16,9 @@
 }
 
 body {
-  background-color: rgb(238, 238, 238);
+  background-color: var(--bg-main);
   font-family: monospace;
+  color: var(--fg-main);
 }
 
 .wrapper {
@@ -29,15 +41,24 @@ body {
   flex: 1;
 }
 
+input, select, textarea, button {
+  background-color: var(--bg-accent1);
+  border: 1px solid var(--fg-dead);
+  color: var(--fg-main);
+}
+
 .text-input {
   resize: vertical;
   width: 100%;
-  background-color: #Fff;
   border-radius: 4px;
-  border: 1px solid rgb(228, 228, 228);
   padding: 0.5em;
   font-size: 1em;
   min-height: 2em;
+}
+
+button {
+  border-radius: 2px;
+  padding: 2px 5px;
 }
 
 .page-header {
@@ -46,8 +67,8 @@ body {
   align-items: center;
   width: 100%;
   height: 80px;
-  background-color: rgb(42, 230, 230);
-  color: #fff;
+  background-color: var(--primary);
+  color: var(--fg-main);
   font-weight: bold;
   -webkit-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
   -moz-box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.10);
@@ -60,8 +81,8 @@ body {
   align-items: center;
   width: 100%;
   height: 60px;
-  background-color: rgb(14, 153, 153);
-  color: #fff;
+  background-color: var(--primary-muted);
+  color: var(--fg-main);
 }
 
 .sub-option {

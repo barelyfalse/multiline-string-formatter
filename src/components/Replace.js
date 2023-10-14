@@ -23,7 +23,7 @@ function Replace({rules, setRule, removeRule, disabled, setDisabledReplace, addR
           className='add-rule-btn'
           onClick={() => addRule()}
         >
-          +
+          &#128929;
         </button>
       </div>
     </CollapsibleCard>

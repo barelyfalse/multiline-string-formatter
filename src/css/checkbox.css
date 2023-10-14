@@ -20,27 +20,28 @@
 .checkmark {
   height: 20px;
   width: 20px;
-  background-color: #eee;
+  background-color: var(--bg-accent1);
 }
 
 .checkbox-container input ~ .checkmark {
   border-radius: 4px;
+  transition: background-color 250ms ease;
 }
 
 .checkbox-container:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: var(--primary-muted);
 }
 
 .checkbox-container input:checked ~ .checkmark {
-  background-color: rgb(42, 230, 230);
+  background-color: var(--primary);
 }
 
 .checkbox-container input:checked:hover:enabled ~ .checkmark {
-  background-color: rgb(39, 214, 214);
+  background-color: var(--primary-muted);
 }
 
 .checkbox-container input:disabled ~ .checkmark {
-  background-color: rgb(180, 180, 180);
+  background-color: var(--fg-dead);
   cursor: not-allowed;
 }
 
@@ -59,7 +60,7 @@
 .checkbox-container .checkmark:after {
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid var(--fg-main);
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

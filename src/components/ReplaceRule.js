@@ -9,7 +9,7 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
       <div className="row row-right">
         <button onClick={() => {
           removeRule(index)
-          }}>🗑</button>
+          }}>&#128936;</button>
       </div>
       <div className="row">
         {rule.regexMode?<div className='reg-pre'>/</div>:<></>}
@@ -40,8 +40,8 @@ function ReplaceRule({index, rule, setRule, removeRule}) {
           }}>
           <option value="-1" disabled>Mode</option>
           <option value="1">Sustituir</option>
-          <option value="2">Tras la coincidencia</option>
-          <option value="3">Frente a la coincidencia</option>
+          <option value="2" disabled>Tras la coincidencia</option>
+          <option value="3" disabled>Frente a la coincidencia</option>
         </select>
       </div>
       <div className='row'><span className="info-text">{rule.info}</span></div>
